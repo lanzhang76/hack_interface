@@ -1,6 +1,6 @@
-# hack_thesis
+## hack(Comedy) interface
 
-> A Vue.js project
+> “Hack(Comedy)” is a computational comedy interface that aims to interrogate our perception of humor through a procedurally live generation that copies and reflects condensed themes and identities in the American comedy landscape. The artist undertakes an unexpected method of programming to achieve comic absurdity by generating materials from borrowed comic sources.
 
 ## Build Setup
 
