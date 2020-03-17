@@ -1,18 +1,25 @@
 <template>
   <div class="comedian-module">
-    <button v-on:click="cleanOutput">🗑</button>
+    <button v-on:click="cleanOutput" class="tooltip">
+      🗑
+      <span class="tooltiptext">clean</span>
+    </button>
+
     <h4 ref="comedian_code">{{comedian_name}}</h4>
     <div class="output_box">
       <p>
         <span v-for="({input, output},key) in conversationChain" :key="key">
-          <span>
-            {{" " + input}}
-            <span style="color:#9770EA">{{output}}</span>
-          </span>
+          <span>{{" " + input}}<span style="color:#9770EA">{{output}}</span></span>
         </span>
       </p>
     </div>
-    <textarea ref="textinput" @keydown.enter.prevent="init" cols="40" rows="1" placeholder></textarea>
+    <textarea
+      ref="textinput"
+      @keydown.enter.prevent="init"
+      cols="40"
+      rows="1"
+      placeholder="'I want a','bunnies like','my passion is'"
+    ></textarea>
 
     <sourceCaption v-show="captionWanted" v-bind:comcap="this.comedian_name"></sourceCaption>
   </div>
@@ -21,7 +28,8 @@
 
 <script>
 import { bus } from "../main";
-import { generateEnd } from "./Markov.js";
+// import { generateEnd } from "./Markov.js";
+import { generateEnd } from "./ngram.js";
 import sourceCaption from "./sourceCaption.vue";
 import aziz from "raw-loader!../assets/aziz.txt";
 import jerry from "raw-loader!../assets/jerry.txt";
@@ -116,8 +124,6 @@ export default {
     },
     scrollBottom: function() {
       var container = this.$el.querySelector(".output_box");
-      console.log(container.scrollHeight);
-      console.log(container.scrollTop);
       container.scrollTop = container.scrollHeight + 10;
     },
     cleanOutput: function() {
@@ -172,5 +178,30 @@ textarea {
   color: gray;
   outline: none;
   border: none;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 40px;
+  font-size: 0.8em;
+  background-color: gray;
+  border: 1px solid gray;
+  color: white;
+  text-align: center;
+  border-radius: 2px;
+  padding: 1px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }
 </style>

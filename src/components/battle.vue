@@ -6,13 +6,13 @@
         @keydown.enter.prevent="submit_sentence"
         cols="40"
         rows="5"
-        placeholder="For starting battle mode and see different outputs, type here."
+        placeholder="You can type words or phrases here and hit 'ENTER' or press 'Write'."
         required
       ></textarea>
     </div>
     <div class="textInput">
       <button v-on:click="submit_sentence">Write</button>
-      <button v-on:click="clean">Clean</button>
+      <button v-on:click="clean">Clean all outputs</button>
     </div>
   </div>
 </template>

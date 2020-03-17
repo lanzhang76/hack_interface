@@ -1,5 +1,3 @@
-// add EXPORT keyword in order to import functions into component
-
 // 
 // functions that are needed for freely writing markov
 // call generateEnd(string a, string b) will do
@@ -28,10 +26,8 @@ export function nextWord(sentence, text) {
   let current = sentence.split(" ");
   let model = markovCount(text, s_length);
   let next_value = model[current];
-  // console.log(next_value)
   var count = 1;
   while (current in model === false) {
-    // console.log(next_value);
     // clamp function
     var cap = Math.max(0, Math.min(count, s_length - 1));
     if (count > cap) {

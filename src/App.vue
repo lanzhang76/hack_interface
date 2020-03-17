@@ -10,7 +10,7 @@
         </div>
         <div class="sub-item" id="comedian_labels">
           <hr />
-          <h4>Comedians</h4>
+          <h4>1. Select Comedians</h4>
 
           <div
             id="ck-button"
@@ -26,9 +26,8 @@
         </div>
         <div class="sub-item check_box">
           <hr />
-          <h4>Modes</h4>
+          <h4>2. Select Modes</h4>
           <modes />
-          <battle />
         </div>
 
         <div class="sub-item check_box" id="reference_box">
@@ -36,9 +35,9 @@
           <input v-model="caption_wanted" type="checkbox" />
           <label>Show source: {{caption_wanted}}</label>
           <br />
-          <input v-model="about" type="checkbox" />
+          <!-- <input v-model="about" type="checkbox" />
           <label>About</label>
-          <p v-show="about">{{about_info}}</p>
+          <p v-show="about">{{about_info}}</p>-->
         </div>
         <div class="sub-item" id="credits">Lan Zhang | computational comedy | 2020</div>
       </div>
@@ -82,7 +81,9 @@ export default {
       caption_wanted: false,
       about: false,
       about_info:
-        "“Hack(Comedy)” is a computational comedy interface that aims to interrogate our perception of humor through a procedurally live generation that copies and reflects condensed themes and identities in the American comedy landscape. The artist undertakes an unexpected method of programming to achieve comic absurdity by generating materials from borrowed comic sources."
+        "“Hack(Comedy)” is a computational comedy interface that aims to interrogate our perception of humor through a procedurally live generation that copies and reflects condensed themes and identities in the American comedy landscape.",
+      artist_info:
+        "The artist undertakes an unexpected method of programming to achieve comic absurdity by generating materials from borrowed comic sources."
     };
   }
 };
@@ -90,10 +91,14 @@ export default {
 
 <style>
 @import url(https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap);
+body {
+  overflow: hidden;
+  margin: 0;
+}
 
 .container {
   display: grid;
-  grid-template-columns: 250px auto;
+  grid-template-columns: 300px auto;
   /* grid-column-gap: 20px; */
   grid-template-rows: auto;
   grid-template-areas: "menu main";
@@ -108,14 +113,15 @@ export default {
 }
 #menu {
   grid-area: menu;
-  padding: 20px;
+  padding: 30px;
   background-color: #f0f0f0;
-  font-size: 0.6em;
+  font-size: 0.7em;
 }
 #main {
   padding: 20px;
   grid-area: main;
   background-color: #edecee;
+  overflow-y: scroll;
 }
 
 #app {
