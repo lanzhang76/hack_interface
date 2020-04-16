@@ -29,4 +29,4 @@ npm run build
 ```
 
 
-Made by Lan Zhang
+Copyright (c) 2020 Lan Zhang
