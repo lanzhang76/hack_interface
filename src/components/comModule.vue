@@ -9,7 +9,10 @@
     <div class="output_box">
       <p>
         <span v-for="({input, output},key) in conversationChain" :key="key">
-          <span>{{" " + input}}<span style="color:#9770EA">{{output}}</span></span>
+          <span>
+            {{" " + input}}
+            <span style="color:#9770EA">{{output}}</span>
+          </span>
         </span>
       </p>
     </div>
@@ -30,6 +33,7 @@
 import { bus } from "../main";
 // import { generateEnd } from "./Markov.js";
 import { generateEnd } from "./ngram.js";
+import { rant } from "./rant.js";
 import sourceCaption from "./sourceCaption.vue";
 import aziz from "raw-loader!../assets/aziz.txt";
 import jerry from "raw-loader!../assets/jerry.txt";
@@ -122,6 +126,30 @@ export default {
       this.appendToConversation(sentence[0], sentence[1]);
       this.scrollBottom();
     },
+    // ranting mode
+    rantToText: function(rantIn) {
+      let rant_length = rantIn;
+      let selected_corpus = this.nameCheck(this.text_label);
+
+      var txt = rant(selected_corpus, rant_length).trim();
+      this.rantTXT(txt);
+    },
+    rantTXT: function(txt) {
+      var l = txt.split(" ");
+
+      var self = this.conversationChain;
+      var i = 0;
+      setInterval(function spl() {
+        if (i < l.length) {
+          self.push({
+            input: "",
+            output: l[i]
+          });
+        }
+        i++;
+        this.scrollBottom();
+      }, 300);
+    },
     scrollBottom: function() {
       var container = this.$el.querySelector(".output_box");
       container.scrollTop = container.scrollHeight + 10;
@@ -133,6 +161,7 @@ export default {
   created() {
     bus.$on("battleF", this.battleToText);
     bus.$on("clean", this.cleanOutput);
+    bus.$on("rantM", this.rantToText);
   }
 };
 </script>

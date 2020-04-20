@@ -23,16 +23,19 @@
         @click="checkBattle('group')"
       />
       <label for="two">Group Improv</label>
-    </div>
-    <div class="sub-mode">
       <battle v-show="groupBool"></battle>
-      <input type="radio" id="three" value="Rant" v-model="picked" @click="checkBattle('rant')" />
-      <label for="two">
-        <strike>Rant</strike>
-      </label>
-      <p v-show="rantBool" class="caption">Let it be.</p>
     </div>
     <div class="sub-mode">
+      <input type="radio" id="three" value="Rant" v-model="picked" @click="checkBattle('rant')" />
+      <label for="two">Rant</label>
+      <rantMode v-show="rantBool"></rantMode>
+      <!-- <div class="caption"  id="rant_box">
+        <input type="text" id="rant_length" placeholder="Output word-length" />
+        <br />
+        <button onclick="dothis()">Start</button>
+      </div>-->
+    </div>
+    <!-- <div class="sub-mode">
       <battle v-show="strikeBool"></battle>
       <input
         type="radio"
@@ -45,26 +48,27 @@
         <strike>Connect & Conduct</strike>
       </label>
       <p v-show="strikeBool" class="caption">Connect with other machines</p>
-    </div>
+    </div>-->
   </div>
 </template>>
 
 <script>
 import battle from "./battle";
+import rantMode from "./rantMode";
 
 export default {
   name: "modes",
   components: {
-    battle
+    battle,
+    rantMode
   },
   data() {
     return {
-      picked: "",
+      picked: "Write",
 
-      writeBool: false,
+      writeBool: true,
       groupBool: false,
-      rantBool: false,
-      strikeBool: false
+      rantBool: false
     };
   },
   methods: {
@@ -75,7 +79,7 @@ export default {
       } else if (tag == "group") {
         this.groupBool = true;
         this.writeBool = this.rantBool = false;
-      } else {
+      } else if (tag == "rant") {
         this.rantBool = true;
         this.writeBool = this.groupBool = false;
       }
