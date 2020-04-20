@@ -34,5 +34,6 @@ npm run build
 - Rant-individualized?
 - Add more source
 - Add revelation/info/about
+- Deploy with Vue Cli?
 
 Copyright (c) 2020 Lan Zhang
