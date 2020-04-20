@@ -29,4 +29,10 @@ npm run build
 ```
 
 
+## TODOs:
+
+- Rant-individualized?
+- Add more source
+- Add revelation/info/about
+
 Copyright (c) 2020 Lan Zhang
